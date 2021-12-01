@@ -1,0 +1,43 @@
+{
+  "name": "@vant/popperjs",
+  "version": "1.1.0",
+  "description": "Pre-compiled popperjs core",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "clean": "rimraf ./dist",
+    "dev": "rollup --config rollup.config.js --watch",
+    "build:types": "tsc -p ./tsconfig.json --emitDeclarationOnly",
+    "build:bundle": "rollup --config rollup.config.js",
+    "build": "pnpm clean && pnpm build:bundle && pnpm build:types",
+    "release": "pnpm build && release-it",
+    "prepare": "pnpm build"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/youzan/vant/tree/dev/packages/vant-popperjs",
+  "dependencies": {
+    "@popperjs/core": "^2.9.2"
+  },
+  "devDependencies": {
+    "typescript": "4.x",
+    "rollup": "^2.33.3",
+    "rollup-plugin-esbuild": "^4.6.0",
+    "@rollup/plugin-node-resolve": "^13.0.0",
+    "release-it": "^14.2.2"
+  },
+  "release-it": {
+    "git": {
+      "tag": false,
+      "commitMessage": "release: @vant/popperjs ${version}"
+    }
+  }
+}
